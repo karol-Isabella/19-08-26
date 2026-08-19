@@ -1,111 +1,101 @@
 'use client';
 
-interface ServiceCard {
+interface Service {
   id: number;
-  icon: string;
   title: string;
   description: string;
-  cta: string;
-  href: string;
+  features: string[];
+  icon: string;
 }
 
 export default function Services() {
-  const mainServices: ServiceCard[] = [
+  const services: Service[] = [
     {
       id: 1,
-      icon: '💻',
-      title: 'Cursos Virtuales SENA',
-      description: 'Descubre más de 250 programas de formación virtual ofrecidos por el SENA para todos los colombianos. Aprende en línea con flexibilidad horaria.',
-      cta: 'Ver Catálogo Completo',
-      href: '#',
+      icon: '01',
+      title: 'Cursos Virtuales',
+      description: 'Accede a una amplia variedad de programas de formación en línea con flexibilidad de horarios.',
+      features: ['Más de 250 cursos', 'Tutores certificados', 'Acceso 24/7'],
     },
     {
       id: 2,
-      icon: '📅',
-      title: 'Cronograma de Inscripción',
-      description: 'Conoce las fechas importantes para inscribirte en los programas de formación que ofrece el SENA. Planifica tu proceso de inscripción.',
-      cta: 'Ver Cronograma',
-      href: '#',
-    },
-  ];
-
-  const infoCards = [
-    {
-      id: 1,
-      title: 'Boletines',
-      description: 'Boletín No. 86, Julio 19 / 2018 - Tema: Borrar caché. Recibe información importante del SENA.',
-      cta: 'Ver más',
-      href: '#',
-    },
-    {
-      id: 2,
-      title: 'Preguntas Frecuentes',
-      description: 'Resuelve tus dudas sobre información general, registro, inscripción, selección y matrícula en nuestros programas.',
-      cta: 'Ver más',
-      href: '#',
+      icon: '02',
+      title: 'Certificados Profesionales',
+      description: 'Obtén credenciales reconocidas que validen tus competencias profesionales.',
+      features: ['Reconocimiento nacional', 'Validez internacional', 'Amplio valor en mercado'],
     },
     {
       id: 3,
-      title: 'Seguridad',
-      description: 'Navega seguro en la web siguiendo las mejores prácticas de seguridad. Protege tu información personal.',
-      cta: 'Ver más',
-      href: '#',
+      icon: '03',
+      title: 'Seguimiento Personalizado',
+      description: 'Recibe orientación continua y monitoreo de tu progreso académico.',
+      features: ['Tutor asignado', 'Reportes detallados', 'Mentoría constante'],
+    },
+    {
+      id: 4,
+      icon: '04',
+      title: 'Red de Profesionales',
+      description: 'Conecta con una comunidad de estudiantes y profesionales del sector.',
+      features: ['Networking activo', 'Oportunidades laborales', 'Colaboraciones'],
     },
   ];
 
   return (
-    <section className="w-full bg-white py-24 md:py-32">
+    <section className="w-full py-20 md:py-28 bg-gray-50">
       <div className="container-fluid">
-        {/* Main Services */}
-        <div className="grid grid-cols-1 lg:grid-cols-2 gap-10 mb-24">
-          {mainServices.map((service) => (
-            <div
-              key={service.id}
-              className="group bg-gradient-to-br from-gray-50 to-gray-100 rounded-xl border border-gray-200 p-10 md:p-12 hover:shadow-xl transition-all duration-300 flex flex-col"
-            >
-              <div className="text-5xl mb-6">{service.icon}</div>
+        {/* Header */}
+        <div className="text-center mb-16">
+          <h2 className="mb-6">Lo que ofrecemos</h2>
+          <p className="text-lg text-gray-600 max-w-2xl mx-auto">
+            Servicios diseñados para impulsar tu carrera profesional
+          </p>
+        </div>
 
-              <h3 className="text-2xl font-bold text-gray-900 mb-4">{service.title}</h3>
-              <p className="text-gray-700 mb-8 leading-relaxed flex-1">{service.description}</p>
+        {/* Services Grid */}
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-10 mb-16">
+          {services.map((service) => (
+            <div key={service.id} className="card">
+              {/* Icon */}
+              <div className="w-12 h-12 rounded-lg bg-green-100 flex items-center justify-center mb-6">
+                <span className="text-xl font-bold text-green-600">{service.icon}</span>
+              </div>
 
-              <button className="w-full bg-green-600 hover:bg-green-700 text-white font-semibold py-4 rounded-lg transition-all transform hover:scale-105 active:scale-95 shadow-md">
-                {service.cta}
-              </button>
+              {/* Content */}
+              <h3 className="text-xl font-bold text-gray-900 mb-4">{service.title}</h3>
+              <p className="text-gray-600 mb-6 leading-relaxed text-sm">{service.description}</p>
+
+              {/* Features */}
+              <ul className="space-y-3 mb-6">
+                {service.features.map((feature, idx) => (
+                  <li key={idx} className="flex items-start gap-3">
+                    <span className="text-green-600 font-bold text-lg leading-none mt-0.5">•</span>
+                    <span className="text-gray-700 font-medium text-sm">{feature}</span>
+                  </li>
+                ))}
+              </ul>
+
+              {/* Link */}
+              <a href="#" className="inline-flex items-center gap-2 text-green-600 hover:text-green-700 font-semibold text-sm">
+                Conocer más
+                <span>→</span>
+              </a>
             </div>
           ))}
         </div>
 
-        {/* Divider */}
-        <div className="h-1 bg-gray-200 mb-24"></div>
-
-        {/* Info Cards Section */}
-        <div>
-          <h2 className="text-3xl font-bold text-gray-900 mb-12 text-center">
-            Información Adicional
-          </h2>
-          
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
-            {infoCards.map((card) => (
-              <div
-                key={card.id}
-                className="bg-white border border-gray-200 rounded-xl p-8 hover:border-green-600 hover:shadow-lg transition-all group"
-              >
-                <h4 className="text-xl font-bold text-gray-900 mb-4 group-hover:text-green-600 transition-colors">
-                  {card.title}
-                </h4>
-                <p className="text-gray-700 leading-relaxed mb-6">
-                  {card.description}
-                </p>
-
-                <a
-                  href={card.href}
-                  className="inline-flex items-center gap-2 text-green-600 hover:text-green-700 font-semibold transition-colors group"
-                >
-                  {card.cta}
-                  <span className="group-hover:translate-x-1 transition-transform">→</span>
-                </a>
-              </div>
-            ))}
+        {/* CTA */}
+        <div className="bg-gradient-to-r from-green-600 to-green-500 rounded-lg p-12 text-center">
+          <h3 className="text-2xl font-bold text-white mb-4">Comienza tu transformación hoy</h3>
+          <p className="text-green-100 mb-8 text-base max-w-2xl mx-auto">
+            Miles de profesionales ya han avanzado su carrera con SOFIA
+          </p>
+          <div className="flex flex-col sm:flex-row gap-4 justify-center">
+            <button className="btn btn-primary bg-white text-green-600 hover:bg-gray-50 px-8">
+              Registrarse Gratis
+            </button>
+            <button className="btn btn-outline border-white text-white hover:bg-white hover:text-green-600 px-8">
+              Ver Programas
+            </button>
           </div>
         </div>
       </div>
